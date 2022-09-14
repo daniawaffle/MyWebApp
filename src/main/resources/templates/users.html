@@ -8,8 +8,12 @@
 <body>
 <div class="container-fluid text-center">
     <div><h1>Manage Users</h1></div>
+    <div class="m-2">
+        <a class="h3" th:href="@{/users/new}">Add new user</a>
+    </div>
     <div>
-        <table>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
             <tr>
                 <th>ID</th>
                 <th>E-mail</th>
@@ -17,6 +21,19 @@
                 <th>Last name</th>
                 <th></th>
             </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="user : ${ListUsers}">
+                <td>[[${user.id}]]</td>
+                <td>[[${user.email}]]</td>
+                <td>[[${user.firstName}]]</td>
+                <td>[[${user.lastName}]]</td>
+                <td>
+                    <a class="h4 mr-3" th:href="@{'/users/edit' + ${user.id}}">Edit</a>
+                    <a class="h4" th:href="@{'/users/edit' + ${user.id}}">Delete</a>
+                </td>
+            </th:block>
+            </tbody>
         </table>
     </div>
 </div>
